@@ -7,12 +7,24 @@ class UsersController extends \BaseController {
      *
      * @return Response
      */
-    public function index()
+    public function getIndex()
     {
+        $users = User::paginate(15);
+
+        return View::make('pages.users.list')->with('users', $users);
     }
-    public function create()
+
+    public function getCreate()
     {
         return View::make('pages.users.create');
+    }
+
+    public function getEdit($id)
+    {
+        $user = User::findOrFail($id);
+        return View::make('pages.users.edit')
+                    ->with('user', $user);
+
     }
 
     /**
@@ -20,7 +32,7 @@ class UsersController extends \BaseController {
      *
      * @return Response
      */
-    public function store()
+    public function postIndex()
     {
         $user = new User(Input::all());
 
@@ -39,11 +51,13 @@ class UsersController extends \BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function getDelete($id)
     {
-        $users = User::findOrFail();
+        $user = User::findOrFail($id);
 
-        return Response::json($users);
+        $user->delete();
+
+        return Redirect::to(URL::previous());
     }
 
 
@@ -53,34 +67,18 @@ class UsersController extends \BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function putUpdate($id)
     {
         $user = User::findOrFail($id);
 
         $user->fill(Input::all());
 
         if ($user->save()) {
-            return Response::json($user);
+            return Redirect::to('users/index');
         } else {
-            return Response::json(['errors' => $user->getErrors()], 400);
+            return Redirect::to('users/edit/'.$id)
+                ->withErrors($user->getValidator());
         }
     }
-
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        $user = User::findOrFail($id);
-
-        $user->delete();
-
-        return Response::json($user);
-    }
-
 
 }

@@ -16,7 +16,7 @@
 
                 </div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ action('SecurityController@store') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ action('SecurityController@postLogin') }}">
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-3 control-label">Username</label>
                             <div class="col-sm-9">
@@ -45,7 +45,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="panel-footer">Not Registered? <a href="{{ action('UsersController@create') }}" class="">Register here</a>
+                <div class="panel-footer">Not Registered? <a href="{{ action('UsersController@getCreate') }}" class="">Register here</a>
                 </div>
             </div>
         </div>

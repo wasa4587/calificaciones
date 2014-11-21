@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 
-<h1>Crear Usuario</h1>
+<h1>Editar Usuario</h1>
 
 <div class="row">
   <div class="span7">
@@ -13,7 +13,8 @@
   </div>
 @endforeach
 
-{{ Form::open(array('url' => 'users')) }}
+
+{{ Form::model($user, array('url' => 'users/update/'.$user->id , 'method' => 'put')) }}
 
     <div class="form-group">
         {{ Form::label('name', 'Name') }}
@@ -29,14 +30,6 @@
         {{ Form::label('email', 'Email') }}
         {{ Form::email('email', Input::old('email'), array('class' => 'form-control')) }}
     </div>
-
-
-    <div class="form-group">
-        {{ Form::label('password', 'Password') }}
-        {{ Form::password('password', array('class' => 'form-control')) }}
-    </div>
-
-
 
     {{ Form::submit('Create the Nerd!', array('class' => 'btn btn-primary')) }}
 

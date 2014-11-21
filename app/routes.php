@@ -12,8 +12,8 @@
 */
 
 
-Route::resource('login', 'SecurityController');
-Route::resource('users', 'UsersController');
+Route::controller('login', 'SecurityController');
+Route::controller('users', 'UsersController');
 
 Route::group(array('before' => ['auth']), function() {
 	Route::get('/', function() {

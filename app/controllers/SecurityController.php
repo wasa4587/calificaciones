@@ -8,7 +8,7 @@ class SecurityController extends \BaseController {
      *
      * @return Response
      */
-    public function index()
+    public function getIndex()
     {
         $errors = [];
         if (Session::has('error')) {
@@ -23,7 +23,7 @@ class SecurityController extends \BaseController {
      *
      * @return Response
      */
-    public function store()
+    public function postLogin()
     {
         if (Auth::attempt(array('username' => Input::get('username'), 'password' => Input::get('password'))))
         {
@@ -41,9 +41,10 @@ class SecurityController extends \BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function destroy()
+    public function getLogout()
     {
         Auth::logout();
+        return Redirect::to('/login');
     }
 
 }

@@ -10,7 +10,11 @@ class SecurityController extends \BaseController {
      */
     public function index()
     {
-        return View::make('pages.login');
+        $errors = [];
+        if (Session::has('error')) {
+            $errors[] = Session::get('error');
+        }
+        return View::make('pages.login')->with('errors',$errors);
 
     }
 
@@ -21,46 +25,12 @@ class SecurityController extends \BaseController {
      */
     public function store()
     {
-        $user = new User(Input::all());
-
-        if ($user->save()) {
-            return Response::json($user, 201);
+        if (Auth::attempt(array('username' => Input::get('username'), 'password' => Input::get('password'))))
+        {
+            return Redirect::to('/');
         } else {
-            return Response::json(['errors' => $user->getErrors()], 400);
-        }
-    }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        $users = User::findOrFail();
-
-        return Response::json($users);
-    }
-
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function update($id)
-    {
-        $user = User::findOrFail($id);
-
-        $user->fill(Input::all());
-
-        if ($user->save()) {
-            return Response::json($user);
-        } else {
-            return Response::json(['errors' => $user->getErrors()], 400);
+            return Redirect::to('/login')
+                ->with('error', 'Login fallido');;            
         }
     }
 
@@ -71,13 +41,9 @@ class SecurityController extends \BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        $user = User::findOrFail($id);
-
-        $user->delete();
-
-        return Response::json($user);
+        Auth::logout();
     }
 
 }

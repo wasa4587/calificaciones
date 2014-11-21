@@ -27,6 +27,7 @@
                 <li><a href="#">One more separated link</a></li>
               </ul>
             </li>
+            <li><a href="{{ action('SecurityController@destroy') }}">logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

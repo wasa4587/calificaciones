@@ -1,6 +1,13 @@
 @extends('layouts.default')
 @section('content')
 
+@foreach ($errors as $error)
+  <div class="alert alert-danger" role="alert">
+    {{$error}}.
+  </div>
+@endforeach
+
+
 <div class="container">
     <div class="row">
         <div class="col-md-5 col-md-offset-4">
@@ -19,7 +26,7 @@
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-3 control-label">Password</label>
                             <div class="col-sm-9">
-                                <input type="password" class="form-control" id="inputPassword3" placeholder="Password" required="">
+                                <input type="password" class="form-control" id="inputPassword3" placeholder="Password" required="" name='password'>
                             </div>
                         </div>
                         <div class="form-group">

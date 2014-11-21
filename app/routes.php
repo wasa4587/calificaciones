@@ -15,7 +15,7 @@
 Route::resource('login', 'SecurityController');
 Route::resource('users', 'UsersController');
 
-Route::group(array('before' => ['acl']), function() {
+Route::group(array('before' => ['auth']), function() {
 	Route::get('/', function() {
 		return View::make('pages.home');
 	});

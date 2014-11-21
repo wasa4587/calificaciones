@@ -40,6 +40,11 @@ Route::filter('auth', function()
 	}
 });
 
+Route::filter('acl', function()
+{
+
+});
+
 
 Route::filter('auth.basic', function()
 {

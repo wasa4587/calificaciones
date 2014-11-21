@@ -2,6 +2,11 @@
 
 class UsersController extends \BaseController {
 
+    public function __construct()
+    {
+        $this->beforeFilter('auth', ['except' => ['getCreate', 'postIndex']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

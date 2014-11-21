@@ -16,6 +16,7 @@ class RecursosTable extends Migration {
         {
             $table->increments('id');
             $table->string('recurso');
+            $table->string('method');
             $table->timestamps();
             $table->softDeletes();  
         });

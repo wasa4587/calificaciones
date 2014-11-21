@@ -37,6 +37,14 @@ Route::filter('auth', function()
 {
 	if (Auth::guest()) {
 		return Redirect::guest('/login');
+	} else {
+		$recursos = Auth::user()->recursos->toArray();
+		$acl = My\Acl::getInstance();
+		$acl->setResources($recursos);
+		if (!$acl->check()) {
+			return Redirect::guest('/');
+		}
+
 	}
 });
 

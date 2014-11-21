@@ -10,6 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+My\Menu::setMenu(Config::get('menu'));
 
 
 Route::controller('login', 'SecurityController');

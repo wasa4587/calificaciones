@@ -4,8 +4,7 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"require": {
-		"laravel/framework": "4.2.*",
-	    "lavary/laravel-menu": "dev-master"
+		"laravel/framework": "4.2.*"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "1.*",
@@ -21,7 +20,7 @@
 			"app/tests/TestCase.php"
 		],
         "psr-0": {
-            "Tailored": "app/lib"
+            "My": "app/lib"
         }		
 	},
 	"scripts": {

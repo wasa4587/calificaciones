@@ -21,9 +21,10 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
     protected $table = 'users';
 
     protected $fillable = [
-        'email',
-        'username',
         'name',
+        'email',
+        'rol_id',
+        'username',
         'is_admin',
         'password',
     ];
@@ -31,6 +32,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
     protected $visible = [
         'id',
         'email',
+        'rol_id',
         'username',
         'name',
         'is_admin',
@@ -42,6 +44,16 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
         'name' => 'required',
         'password' => 'required|min:6',
     ];
+
+    public function recursos()
+    {
+        return $this->hasMany('RolRecurso', 'rol_id', 'rol_id');
+    }
+
+    public function rol()
+    {
+        return $this->belongsTo('Rol', 'rol_id');
+    }    
 
     protected function setCustomRules()
     {

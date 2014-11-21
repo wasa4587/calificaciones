@@ -16,7 +16,7 @@ vim app/config/database.php
 
 #Crear bases de datos
 ```
-php artisan migrate
+php artisan migrate --seed
 ```
 
 #Probar el sistema

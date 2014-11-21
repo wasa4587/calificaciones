@@ -1,10 +1,51 @@
 @extends('layouts.default')
 @section('content')
-      <!-- Main jumbotron for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a href="#" class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
-      </div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading"> <strong class="">Login</strong>
+
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ action('SecurityController@store') }}">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-3 control-label">Username</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="inputUsername3" placeholder="Username" required="" name='username'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">Password</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="inputPassword3" placeholder="Password" required="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <div class="checkbox">
+                                    <label class="">
+                                        <input type="checkbox" class="">Remember me</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group last">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <button type="submit" class="btn btn-success btn-sm">Sign in</button>
+                                <button type="reset" class="btn btn-default btn-sm">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-footer">Not Registered? <a href="{{ action('UsersController@create') }}" class="">Register here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @stop
+
+
+
 

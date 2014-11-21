@@ -1,6 +1,7 @@
 <?php
 
-class UsersController extends \BaseController {
+class SecurityController extends \BaseController {
+
 
     /**
      * Display a listing of the resource.
@@ -9,10 +10,8 @@ class UsersController extends \BaseController {
      */
     public function index()
     {
-    }
-    public function create()
-    {
-        return View::make('pages.users.create');
+        return View::make('pages.login');
+
     }
 
     /**
@@ -25,10 +24,9 @@ class UsersController extends \BaseController {
         $user = new User(Input::all());
 
         if ($user->save()) {
-            return Redirect::to('users/index');
+            return Response::json($user, 201);
         } else {
-            return Redirect::to('users/create')
-                ->withErrors($user->getValidator());
+            return Response::json(['errors' => $user->getErrors()], 400);
         }
     }
 
@@ -81,6 +79,5 @@ class UsersController extends \BaseController {
 
         return Response::json($user);
     }
-
 
 }

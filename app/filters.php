@@ -42,7 +42,9 @@ Route::filter('auth', function()
 
 Route::filter('acl', function()
 {
-
+	if (Auth::guest()) {
+		return Redirect::guest('login');
+	}
 });
 
 

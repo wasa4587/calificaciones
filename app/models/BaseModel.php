@@ -7,7 +7,7 @@ class BaseModel extends Eloquent
     protected $customRules = [];
 
     protected $errors = [];
-
+    protected $validator = null;
     protected function setCustomRules()
     {
     }
@@ -15,6 +15,9 @@ class BaseModel extends Eloquent
     public static function resetBooted()
     {
         static::$booted = [];
+    }
+    public function getValidator() {
+        return $this->validator;
     }
 
     public static function getErrorsFromValidator($validator)
@@ -52,6 +55,8 @@ class BaseModel extends Eloquent
                 $this->getAttributes(),
                 array_merge(static::$rules, $this->customRules)
             );
+            $this->validator = $validator;
+
         }
 
         if ($validator->fails()) {

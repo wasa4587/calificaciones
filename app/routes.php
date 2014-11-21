@@ -15,6 +15,9 @@ Route::group(array('before' => ['acl']), function() {
 	Route::get('/', function() {
 		return View::make('pages.home');
 	});
+	Route::get('login', function() {
+		return View::make('pages.login');
+	});
 	Route::get('about', function() {
 		return View::make('pages.about');
 	});

@@ -5,7 +5,7 @@ namespace My;
 class Acl
 {
 	private static $instance;
-	protected static $resources;
+	protected static $resources = array();
 
 	public static function getInstance() {
 		if (null==self::$instance) {
